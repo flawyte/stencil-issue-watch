@@ -5,25 +5,35 @@
  */
 
 
-import '@stencil/core';
-
-
+import { HTMLStencilElement, JSXBase } from '@stencil/core/internal';
+import { JSX } from '@stencil/core';
 
 
 export namespace Components {
-
   interface AppRoot {}
-  interface AppRootAttributes extends StencilHTMLAttributes {}
 }
 
-declare global {
-  interface StencilElementInterfaces {
+declare namespace LocalJSX {
+  interface AppRoot extends JSXBase.HTMLAttributes {}
+
+  interface ElementInterfaces {
     'AppRoot': Components.AppRoot;
   }
 
-  interface StencilIntrinsicElements {
-    'app-root': Components.AppRootAttributes;
+  interface IntrinsicElements {
+    'AppRoot': LocalJSX.AppRoot;
   }
+}
+export { LocalJSX as JSX };
+
+declare module "@stencil/core" {
+  export namespace JSX {
+    interface ElementInterfaces extends LocalJSX.ElementInterfaces {}
+    interface IntrinsicElements extends LocalJSX.IntrinsicElements {}
+  }
+}
+
+declare global {
 
 
   interface HTMLAppRootElement extends Components.AppRoot, HTMLStencilElement {}
@@ -31,7 +41,6 @@ declare global {
     prototype: HTMLAppRootElement;
     new (): HTMLAppRootElement;
   };
-
   interface HTMLElementTagNameMap {
     'app-root': HTMLAppRootElement
   }
@@ -39,14 +48,5 @@ declare global {
   interface ElementTagNameMap {
     'app-root': HTMLAppRootElement;
   }
-
-
-  export namespace JSX {
-    export interface Element {}
-    export interface IntrinsicElements extends StencilIntrinsicElements {
-      [tagName: string]: any;
-    }
-  }
-  export interface HTMLAttributes extends StencilHTMLAttributes {}
-
 }
+
