@@ -11,7 +11,6 @@ import { JSX } from '@stencil/core';
 
 export namespace Components {
   interface AppProduct {
-    'description': any;
     'name': any;
     'quantityLeft': any;
   }
@@ -20,7 +19,6 @@ export namespace Components {
 
 declare namespace LocalJSX {
   interface AppProduct extends JSXBase.HTMLAttributes {
-    'description'?: any;
     'name'?: any;
     'quantityLeft'?: any;
   }

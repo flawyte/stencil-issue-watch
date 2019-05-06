@@ -1,11 +1,8 @@
 .Root {
   display: grid;
+    grid-template-columns: 200px auto;
   grid-gap: 5px;
   padding: 10px;
-}
-
-.Description {
-  grid-column: 1;
 }
 
 .Button {

@@ -9,7 +9,6 @@ export class AppProduct {
   @Element() host;
 
   @Prop() name;
-  @Prop() description;
   @Prop() quantityLeft;
 
   button;
@@ -29,7 +28,6 @@ export class AppProduct {
     return (
       <div class='Root'>
         <div class='Name'>{this.name}</div>
-        <div class='Description'>{this.description}</div>
 
         <button class='Button'><img class='Icon' src='/assets/ic_cart.svg' /></button>
         <div class='QuantityLeft'>{this.quantityLeft} left</div>
