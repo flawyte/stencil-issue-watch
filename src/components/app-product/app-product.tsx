@@ -15,8 +15,6 @@ export class AppProduct {
 
   componentDidLoad() {
     this.button = this.host.querySelector('.Button');
-
-    this.watchQuantityLeft(this.quantityLeft);
   }
 
   @Watch('quantityLeft')
